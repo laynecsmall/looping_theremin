@@ -16,7 +16,7 @@ fun void serialPoller(){
     while(true){
         serial.onLine() => now;
         serial.getLine() => line;
-        <<<line>>>;
+        
         
         if (line$Object == null) continue;
     
@@ -30,13 +30,13 @@ fun void serialPoller(){
 
         if (data[0] != 0){
            1000*(1-data[0]/700.0) => float new_freq;
-           <<<"freq",new_freq>>>;
+        
            s.freq(new_freq);
         }
 
         if (data[1] != 0){
            1-data[1]/700.0 => float new_gain;
-           <<<"gain",new_gain>>>;
+        
            e.gain(new_gain);
         }
         else e.gain(0);

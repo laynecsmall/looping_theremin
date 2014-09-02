@@ -129,6 +129,6 @@ void loop(){
   Serial.print("\n");
 
   //delay is going to need to be tweaked in final version
-  delay(30);
+  delay(15);
 }
 
