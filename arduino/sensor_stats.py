@@ -11,6 +11,8 @@ class sensor:
     count = 0.00001
     total = 0.00001
     total_square = 0.00001
+    max = 0
+    min = 9999999999999
 
     def __init__(self):
         pass
@@ -20,6 +22,11 @@ class sensor:
         self.total += value
         self.total_square += value**2
         self.count += 1
+
+        if value < self.min:
+                self.min = value
+        if value > self.max:
+                self.max = value
 
     def get_average(self):
         "get the average - sum/count"
@@ -46,14 +53,23 @@ y_sensor = sensor()
 # begin the main loop
 while True:
     line = ser.readline().decode("utf-8")
-    x, y, button = line.strip().split(",")
+    try:
+        x, y, button = line.strip().split(",")
+    except:
+        continue
     x_sensor.add_value(float(x))
     y_sensor.add_value(float(y))
-    
-    print("%.1f %.1f, %d" % (x_sensor.get_average(),
-                             x_sensor.get_stddev(),
-                             x_sensor.count))
-    print("%.1f %.1f, %d" % (y_sensor.get_average(),
-                             y_sensor.get_stddev(),
-                             y_sensor.count))
+
+    print("Average: %.1f Std-dev: %.1f Max: %d Min: %d Samples:%d" % (
+        x_sensor.get_average(),
+        x_sensor.get_stddev(),
+        x_sensor.max,
+        x_sensor.min,
+        x_sensor.count))
+    print("Average: %.1f Std-dev: %.1f Max: %d Min: %d Samples:%d" % (
+        y_sensor.get_average(),
+        y_sensor.get_stddev(),
+        y_sensor.max,
+        y_sensor.min,
+        y_sensor.count))
     print("=========================")

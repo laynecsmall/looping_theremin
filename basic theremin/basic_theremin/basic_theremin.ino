@@ -18,6 +18,7 @@ int calibration_samples = 40;
 //(offset to make input close to zero
 //and threshhold over which input is non-zero
 
+//maximum size of ten, because we'll never need more sensors than that
 int offsets[10];
 int thresholds[10];
 int values[10];
@@ -96,7 +97,7 @@ void setup(){
     Serial.print(" \n");
   }
   Serial.print("\n\n");
-  delay(5000);
+  //delay(5000);
 }
 
 
@@ -128,6 +129,6 @@ void loop(){
   Serial.print("\n");
 
   //delay is going to need to be tweaked in final version
-  delay(100);
+  delay(30);
 }
 
