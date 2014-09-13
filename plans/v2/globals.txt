@@ -1,0 +1,6 @@
+﻿"obwidth"=15
+"obchannel"=3.2
+"bracewidth"=120.000000
+"sheetthickness"=4
+"slotwidth"="sheetthickness"+0.2
+"slotlength"=20.1
