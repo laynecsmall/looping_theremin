@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=GND Pin=POWER-2
+Added Pin To Net: NetName=GND Pin=POWER-3
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component npn1 2N3904
+Added Room: Name=ecen201_main_schematic

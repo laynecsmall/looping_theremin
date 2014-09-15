@@ -1,0 +1,23 @@
+Removed Member From Class: ClassName=ecen201_main_schematic Member=array_jmp1
+Removed Member From Class: ClassName=ecen201_main_schematic Member=array_jmp2
+Added Component: Designator=jumper1(jumper)
+Added Component: Designator=jumper2(jumper)
+Added Pin To Net: NetName=Netjumper1_1 Pin=jumper1-1
+Added Pin To Net: NetName=Netjumper1_1 Pin=npn1-3
+Added Pin To Net: NetName=Netjumper1_1 Pin=y power header-1
+Added Net: Name=Netjumper1_1
+Added Pin To Net: NetName=Netjumper1_2 Pin=jumper1-2
+Added Pin To Net: NetName=Netjumper1_2 Pin=pnp1-3
+Added Pin To Net: NetName=Netjumper1_2 Pin=y power header-3
+Added Net: Name=Netjumper1_2
+Added Pin To Net: NetName=Netjumper2_1 Pin=jumper2-1
+Added Pin To Net: NetName=Netjumper2_1 Pin=pnp2-3
+Added Pin To Net: NetName=Netjumper2_1 Pin=x power header-3
+Added Net: Name=Netjumper2_1
+Added Pin To Net: NetName=Netjumper2_2 Pin=jumper2-2
+Added Pin To Net: NetName=Netjumper2_2 Pin=npn2-3
+Added Pin To Net: NetName=Netjumper2_2 Pin=x power header-1
+Added Net: Name=Netjumper2_2
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component jumper1
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component jumper2
+Added Room: Name=ecen201_main_schematic

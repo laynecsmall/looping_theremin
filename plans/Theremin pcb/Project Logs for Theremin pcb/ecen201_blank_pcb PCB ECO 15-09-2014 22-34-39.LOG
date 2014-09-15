@@ -1,0 +1,41 @@
+Removed Pin From Net: NetName=MUX A Pin=DIGI_1-2
+Removed Pin From Net: NetName=MUX B Pin=DIGI_1-3
+Removed Pin From Net: NetName=MUX C Pin=DIGI_1-4
+Added Component: Designator=mux(4051)
+Added Pin To Net: NetName=MUX A Pin=DIGI_1-3
+Added Pin To Net: NetName=MUX B Pin=DIGI_1-4
+Added Pin To Net: NetName=MUX C Pin=DIGI_1-5
+Added Pin To Net: NetName=MUX OUT Pin=mux-2
+Added Pin To Net: NetName=GND Pin=mux-5
+Added Pin To Net: NetName=GND Pin=mux-6
+Added Pin To Net: NetName=GND Pin=mux-7
+Added Pin To Net: NetName=MUX C Pin=mux-8
+Added Pin To Net: NetName=MUX B Pin=mux-9
+Added Pin To Net: NetName=MUX A Pin=mux-10
+Added Pin To Net: NetName=VCC Pin=mux-15
+Added Pin To Net: NetName=MUX 6\ Pin=mux-1
+Added Net: Name=MUX 6\
+Added Pin To Net: NetName=MUX 6 Pin=y array header-3
+Added Net: Name=MUX 6
+Added Pin To Net: NetName=MUX7 Pin=mux-3
+Added Pin To Net: NetName=MUX7 Pin=y array header-4
+Added Net: Name=MUX7
+Added Pin To Net: NetName=Netmux_0 Pin=y array header-1
+Added Net: Name=Netmux_0
+Added Pin To Net: NetName=Netmux_4 Pin=mux-4
+Added Pin To Net: NetName=Netmux_4 Pin=y array header-2
+Added Net: Name=Netmux_4
+Added Pin To Net: NetName=Netmux_11 Pin=mux-11
+Added Pin To Net: NetName=Netmux_11 Pin=X array header-4
+Added Net: Name=Netmux_11
+Added Pin To Net: NetName=Netmux_12 Pin=mux-12
+Added Pin To Net: NetName=Netmux_12 Pin=X array header-1
+Added Net: Name=Netmux_12
+Added Pin To Net: NetName=Netmux_13 Pin=mux-13
+Added Pin To Net: NetName=Netmux_13 Pin=X array header-2
+Added Net: Name=Netmux_13
+Added Pin To Net: NetName=Netmux_14 Pin=mux-14
+Added Pin To Net: NetName=Netmux_14 Pin=X array header-3
+Added Net: Name=Netmux_14
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component mux 4051
+Added Room: Name=ecen201_main_schematic

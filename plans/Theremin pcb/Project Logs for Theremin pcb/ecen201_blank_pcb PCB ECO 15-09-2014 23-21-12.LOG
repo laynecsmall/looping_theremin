@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=MUX OUT Pin=ADC-6
+Added Component: Designator=array_jmp1(RAD-0.2)
+Added Component: Designator=array_jmp2(RAD-0.2)
+Added Pin To Net: NetName=MUX OUT Pin=ADC-1
+Added Pin To Net: NetName=Netarray_jmp1_1 Pin=array_jmp1-1
+Added Pin To Net: NetName=Netarray_jmp1_2 Pin=array_jmp1-2
+Added Pin To Net: NetName=Netarray_jmp2_1 Pin=array_jmp2-1
+Added Pin To Net: NetName=Netarray_jmp2_2 Pin=array_jmp2-2
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component array_jmp1 Jumper
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component array_jmp2 Jumper
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component mux 4051
+Added Member To Class: ClassName=ecen201_main_schematic Member=Component X array header Array header
+Added Room: Name=ecen201_main_schematic
