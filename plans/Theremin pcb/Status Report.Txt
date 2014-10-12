@@ -1,0 +1,14 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [Free Documents]
+   Generated File[ecen201_blank_pcb.GD1]
+   Generated File[ecen201_blank_pcb.GG1]
+   Generated File[ecen201_blank_pcb.RUL]
+   Generated File[ecen201_blank_pcb.EXTREP]
+   Generated File[ecen201_blank_pcb.REP]
+
+
+Files Generated   : 5
+Documents Printed : 0
+
+Finished Output Generation At 09:08:50 On 18/09/2014
