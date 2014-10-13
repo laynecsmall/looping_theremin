@@ -131,19 +131,23 @@ fun void serialPoller(){
 }
 
 fun void handle_buttons(){
-    buttons[1] => int current_voice;
+    //if we've switched away from the current voice, make sure record is turned off
+    if (buttons[1] != current_voice){
+        loop_voices[current_voice].record_end();
+        buttons[1] => current_voice;
+    }
 
     //toggle play state for current voice
     if (buttons[0] != loop_voices[current_voice].play_button_state){
         if (loop_voices[current_voice].play_state == 1){
             loop_voices[current_voice].play_stop();
             buttons[0] => loop_voices[current_voice].play_button_state;
-            <<<"Stopping playback for voice ",voice>>>;
+            <<<"Stopping playback for voice ",current_voice>>>;
         }
         else{
             loop_voices[current_voice].play_start();
             buttons[0] => loop_voices[current_voice].play_button_state;
-            <<<"Starting playback for voice ",voice>>>;
+            <<<"Starting playback for voice ",current_voice>>>;
         }
     }
 
@@ -152,21 +156,14 @@ fun void handle_buttons(){
         if (loop_voices[current_voice].rec_state == 1){
             loop_voices[current_voice].record_end();
             buttons[2] => loop_voices[current_voice].rec_button_state;
-            <<<"","Stopping recording for voice ", voice>>>;
+            <<<"","Stopping recording for voice ", current_voice>>>;
         }
         else{
             loop_voices[current_voice].record_start();
             buttons[2] => loop_voices[current_voice].rec_button_state;
-            <<<"","Starting recording for voice", voice>>>;
+            <<<"","Starting recording for voice", current_voice>>>;
         }
     }
-
-    //if we've switched away from the current voice, make sure record is turned off
-    if (buttons[1] != current_voice){
-        loop_voices[current_voice].record_end();
-        buttons[1] => current_voice;
-    }
-
 }
 
 fun void updateOutput(){

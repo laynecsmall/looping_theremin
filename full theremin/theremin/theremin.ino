@@ -109,7 +109,7 @@ void calibrate(int *offsets,  int *thresholds){
     
     //set the threshhold at three std devations
     //then increment the pointer
-    thresholds[i] = 3 * sqrt(variance);  
+    thresholds[i] = 2 * sqrt(variance);  
   }  
 }
 
@@ -137,9 +137,15 @@ int is_zero(int value,int threshold){
 //update the sensor values
 void check_sensors(int *sensor_values,int  *offsets,int  *thresholds){
     for (int i = 0; i < sensor_count; i++){
-            set_mux(i);
-            sensor_values[i] = is_zero(analogRead(read_mux) - offsets[i], thresholds[i]);
-    }
+			set_mux(i);
+			int total = 0;
+			int samples = 5;
+			for (int i=0;i < samples;i++){
+					total = analogRead(read_mux) + total;
+					delayMicroseconds(1500);
+			}
+			sensor_values[i] = is_zero(total/samples - offsets[i], thresholds[i]);
+		}
 }
 
 
@@ -284,6 +290,6 @@ void loop(){
     Serial.print(rec);
     Serial.print("\n");
 
-    delay(15);
+    delay(20);
 }
 
