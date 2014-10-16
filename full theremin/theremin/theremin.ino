@@ -64,54 +64,12 @@ int ctrl_mux[] = {2,3,4};
 //arrays for info about sensors
 //(offset to make input close to zero
 //and threshhold over which input is non-zero
-int offsets[sensor_count];
-int thresholds[sensor_count];
 int sensor_values[sensor_count];
 
-int calibration_samples = 40;
 
 //sensors are grouped like this
-int y_sensor[] = {7,2,1,0};
-int x_sensor[] = {3,6,5,4};
-
-//for each sensor find out what the average 'zero' value and variance is.
-//set the offset as the average, and threshold as 3*std deviation.
-//threshold is the value above which is zero
-void calibrate(int *offsets,  int *thresholds){
-  //naive variance algorithm taken from http://en.wikipedia.org/wiki/Algorithms_for_calculating_variance
-  
-  //for each of the pins to calibrate
-  for (int i=0;i < sensor_count; i++){
-    int values[calibration_samples];
-    //collect samples
-    for (int j=0;j<calibration_samples-1;j++){
-      delay(10);
-      
-      //set the mux to read from the correct sensor
-      set_mux(i);
-      values[j] = analogRead(read_mux);
-    }
-    
-    //find the sum and squared sum
-    float total = 0;
-    float total_square = 0;
-    for (int j = 0; j < calibration_samples-1;j++){
-      total += values[j];
-      total_square += pow(values[j],2);
-    }
-    //average samples
-    int average = total / calibration_samples;
-    //find the variance
-    int variance = (total_square - pow(total,2)/calibration_samples)/(calibration_samples-1);
-    
-    //set the offset value, increment the pointer
-    offsets[i] = average;
-    
-    //set the threshhold at three std devations
-    //then increment the pointer
-    thresholds[i] = 2 * sqrt(variance);  
-  }  
-}
+int y_sensor[] = {7,6,5,0};
+int x_sensor[] = {3,2,1,4};
 
 //sets the mux pins to read from sensor number given
 void set_mux(int sensor){
@@ -120,31 +78,11 @@ void set_mux(int sensor){
     }
 }
 
-
-//checks to see if value is within the threshold, if it is, return 0 otherwise return the value
-int is_zero(int value,int threshold){
-  if (value < 0){
-    return 0;
-  }
-  if (value < threshold){
-    return 0;
-  }
-  else{
-    return value;
-  }
-}
-
 //update the sensor values
-void check_sensors(int *sensor_values,int  *offsets,int  *thresholds){
+void check_sensors(int *sensor_values){
     for (int i = 0; i < sensor_count; i++){
 			set_mux(i);
-			int total = 0;
-			int samples = 5;
-			for (int i=0;i < samples;i++){
-					total = analogRead(read_mux) + total;
-					delayMicroseconds(1500);
-			}
-			sensor_values[i] = is_zero(total/samples - offsets[i], thresholds[i]);
+			sensor_values[i] = analogRead(read_mux);
 		}
 }
 
@@ -196,6 +134,8 @@ void setup(){
     for (int i = 0; i < sizeof(LED_ORDER)/sizeof(LED_ORDER[0]); i++){
             pinMode(LED_ORDER[i], OUTPUT);
     }
+	pinMode(RECORD_LED, OUTPUT);
+	pinMode(PLAY_LED, OUTPUT);
 
     //set mux set pins to output mode
     for (int i = 0; i < sensor_count; i++){
@@ -203,11 +143,14 @@ void setup(){
     }
 
     set_all_leds_high();
-    calibrate(offsets,thresholds);
+    //calibrate(offsets,thresholds);
     set_all_leds_low();
      
     //button setup
     pinMode(buttons = PLAY,INPUT);
+	Serial.print("Setting button to input mode:");
+	Serial.print(buttons = PLAY);
+	Serial.print("\n");
     pinMode(buttons = VOICE,INPUT);
     pinMode(buttons = RECORD,INPUT);
     
@@ -216,14 +159,6 @@ void setup(){
     Serial.print(sensor_count);
     Serial.print("\n\n");
     
-    for(int i = 0;i<sensor_count;i++){
-      Serial.print("Offset: ");
-      Serial.print(offsets[i]);
-      Serial.print(" Threshold: ");
-      Serial.print(thresholds[i]);
-      Serial.print(" \n");
-    }
-    Serial.print("\n\n");
 
     //delay(5000);
 }
@@ -231,20 +166,20 @@ void setup(){
 
 void loop(){
     //get the sensor values
-    check_sensors(sensor_values, offsets, thresholds);
+    check_sensors(sensor_values);
     int x_val = 0;
     int y_val = 0;
 
     //figure out which array the value in question belongs to
     //if two sensors are active, only pay attention to the last one
     for (int i = 0; i< sizeof(x_sensor)/sizeof(x_sensor[0]); i++){
-            if (sensor_values[x_sensor[i]] != 0){
+            if (sensor_values[x_sensor[i]] > x_val){
                     x_val = sensor_values[x_sensor[i]]; 
             }
     }
 
     for (int i = 0; i< sizeof(y_sensor)/sizeof(y_sensor[0]); i++){
-            if (sensor_values[y_sensor[i]] != 0){
+            if (sensor_values[y_sensor[i]] > y_val){
                     y_val = sensor_values[y_sensor[i]]; 
             }
     }

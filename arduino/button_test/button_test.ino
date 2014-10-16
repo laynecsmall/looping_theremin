@@ -24,7 +24,7 @@ void read_buttons(){
 }
 
 void setup(){
-  Serial.begin(9600);
+  Serial.begin(115200);
   pinMode(buttons = PLAY,INPUT);
   pinMode(buttons = VOICE,INPUT);
   pinMode(buttons = RECORD,INPUT);
